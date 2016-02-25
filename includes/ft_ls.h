@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 13:14:54 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:24:51 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,21 @@ typedef struct			s_ls_file
 {
 	char				*name;
 	struct s_ls_file	*next;
-}						t_ls_file;
+}						t_file;
+
+typedef struct			s_ls_set
+{
+	long				flag;
+	char				*folder;
+}						t_set;
 
 int						ft_ls(char *dir);
 void					ls_error(int error, char *dir);
-t_ls_file				*stock_file(struct dirent *file, int info);
-void					ft_pushback(t_ls_file **begin, t_ls_file *link);
-void					ft_push_name(t_ls_file *begin, t_ls_file *link, int cmp());
-void					ls_display(t_ls_file *begin, int info);
+t_file					*stock_file(struct dirent *file, int info);
+void					ft_pushback(t_file **begin, t_file *link);
+void					ft_push_name(t_file *begin, t_file *link, int cmp());
+int						cmp_name(t_file *s1, t_file *s2);
+void					ls_display(t_file *begin, int info);
+t_set					ls_parsing(char **arg);
 
 #endif

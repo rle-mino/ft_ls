@@ -6,17 +6,17 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 14:12:58 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:31:04 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_ls_file		*stock_file(struct dirent *file, int info)
+t_file		*stock_file(struct dirent *file, int info)
 {
-	t_ls_file	*files;
+	t_file	*files;
 
-	if (!(files = ft_memalloc(sizeof(t_ls_file))))
+	if (!(files = ft_memalloc(sizeof(t_file))))
 		return (NULL);
 	if (info == O_NAME)
 	{
@@ -26,15 +26,15 @@ t_ls_file		*stock_file(struct dirent *file, int info)
 	return (files);
 }
 
-void		ft_pushback(t_ls_file **begin, t_ls_file *link)
+void		ft_pushback(t_file **begin, t_file *link)
 {
 	link->next = *begin;
 	*begin = link;
 }
 
-void		ft_push_name(t_ls_file *begin, t_ls_file *link, int (*cmp)())
+void		ft_push_name(t_file *begin, t_file *link, int (*cmp)())
 {
-	t_ls_file	*tmp;
+	t_file	*tmp;
 
 	tmp = begin;
 	while (tmp->next)
@@ -50,13 +50,14 @@ void		ft_push_name(t_ls_file *begin, t_ls_file *link, int (*cmp)())
 	tmp->next = link;
 }
 
-void			ls_display(t_ls_file *begin, int info)
+void			ls_display(t_file *begin, int info)
 {
 	if (info == O_NAME)
 	{
 		while (begin)
 		{
-			fpf("%s\n", begin->name);
+			if (begin->name[0] != '.')
+				fpf("%s\n", begin->name);
 			begin = begin->next;
 		}
 	}

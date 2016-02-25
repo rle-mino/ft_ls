@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_error.c                                         :+:      :+:    :+:   */
+/*   ls_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 17:08:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 17:32:25 by rle-mino         ###   ########.fr       */
+/*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
+/*   Updated: 2016/02/25 20:41:26 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		ls_error(int error, char *dir)
+t_set		ls_parsing(char **arg)
 {
-	error = 0;
-	if (errno == EACCES)
-		fpf("%s: Permission denied\n", dir);
+	t_set	set;
+	int		i;
+
+	set.flag = 0;
+	set.folder = NULL;
+	while (arg[i][0] == '-')
+	{
+		
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:54:35 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 13:13:49 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:24:53 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
  
 int			main(int ac, char **av)
 {
-	//t_ls_set	ls;
+	t_set	ls;
 	if (ac == 1)
 		return (ft_ls("."));
-/*	else
-		ls = ls_parsing(av);*/
+	else
+		ls = ls_parsing(av);
 	return (0);
 }
