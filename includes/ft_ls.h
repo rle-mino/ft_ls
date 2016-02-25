@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/23 23:11:21 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/25 13:14:54 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <time.h>
 # include <pwd.h>
 # include <grp.h>
+# include <errno.h>
+
+# define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
 
 # define IS_L & 1
 # define IS_RUP & 2
@@ -29,11 +32,15 @@
 # define SET_RLOW | 4
 # define SET_A | 8
 # define SET_T | 16
-# define ERRNO 0 
-# define O_NAME 1
-# define O_ALL 2
-# define ASCII 1
-# define ASCII_REV 2
+
+enum
+{
+	ERRNO,
+	O_NAME,
+	O_ALL,
+	ASCII,
+	ASCII_REV
+};
 
 typedef struct			s_ls_file
 {
@@ -41,8 +48,11 @@ typedef struct			s_ls_file
 	struct s_ls_file	*next;
 }						t_ls_file;
 
-void			ls_error(int error, char *dir);
-t_ls_file		*stock_file(struct dirent *file, int info);
-void			sort_ls_list(t_ls_file **files, int sequ);
+int						ft_ls(char *dir);
+void					ls_error(int error, char *dir);
+t_ls_file				*stock_file(struct dirent *file, int info);
+void					ft_pushback(t_ls_file **begin, t_ls_file *link);
+void					ft_push_name(t_ls_file *begin, t_ls_file *link, int cmp());
+void					ls_display(t_ls_file *begin, int info);
 
 #endif
