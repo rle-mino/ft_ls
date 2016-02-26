@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:11:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/26 11:29:16 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 19:59:10 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int			ft_ls(char *dir)
 		if (ft_strcmp(files->name, file->d_name) >= 0)
 			ft_pushback(&files, stock_file(file, O_NAME));
 		else
-			ft_push_name(files, stock_file(file, O_NAME), cmp_name);
+			ft_push(files, stock_file(file, O_NAME), cmp_name);
 	}
 	ls_display(files, O_NAME);
+	closedir(folder);
 	return (1);
 }

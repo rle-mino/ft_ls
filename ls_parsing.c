@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/26 12:07:47 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 19:58:22 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,28 @@ static void			ls_fill_set(t_set *set, char c)
 		set->flag = set->flag | 16;
 }
 
-t_set				ls_parsing(char **arg, int count)
+int					ls_parsing_file(char **argv, int i, t_fold **fold)
+{
+	*fold = stock_arg(argv[i++]);
+	while (argv[i])
+	{
+		if (ft_strcmp(argv[i], (*fold)->name) >= 0)
+			ft_pushback_fold(fold, stock_arg(argv[i]));
+		else
+			ft_push_fold(*fold, stock_arg(argv[i]));
+		i++;
+	}
+	return (0);
+}
+
+t_set				ls_parsing(char **arg, int count, t_fold **fold)
 {
 	t_set	set;
 	int		i;
 	int		j;
+	void	*cmp;
 
 	set.flag = 0;
-	set.folder = NULL;
 	i = 1;
 	j = 0;
 	while (i < count && arg[i][j] == '-')
@@ -56,6 +70,6 @@ t_set				ls_parsing(char **arg, int count)
 		j = 0;
 		i++;
 	}
-	fpf("%b\n", set.flag);
+	ls_parsing_file(arg, i, fold);
 	return (set);
 }
