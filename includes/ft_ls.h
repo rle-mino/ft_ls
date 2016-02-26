@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/26 10:03:19 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 11:32:26 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@
 # include <stdio.h>
 
 # define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
-
-# define IS_L & 1
-# define IS_RUP & 2
-# define IS_RLOW & 4
-# define IS_A & 8
-# define IS_T & 16
-# define SET_L | 1
-# define SET_RUP | 2
-# define SET_RLOW | 4
-# define SET_A | 8
-# define SET_T | 16
 
 enum
 {

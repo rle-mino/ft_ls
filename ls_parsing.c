@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/26 10:10:06 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 12:07:47 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ static int			ls_isflag(char c)
 static void			ls_fill_set(t_set *set, char c)
 {
 	if (c == 'l')
-		set->flag = set->flag SET_L;
+		set->flag = set->flag | 1;
 	else if (c == 'R')
-		set->flag = set->flag SET_RUP;
+		set->flag = set->flag | 2;
 	else if (c == 'r')
-		set->flag = set->flag SET_RLOW;
+		set->flag = set->flag | 4;
 	else if (c == 'a')
-		set->flag = set->flag SET_A;
+		set->flag = set->flag | 8;
 	else if (c == 't')
-		set->flag = set->flag SET_T;
+		set->flag = set->flag | 16;
 }
 
-t_set		ls_parsing(char **arg, int count)
+t_set				ls_parsing(char **arg, int count)
 {
 	t_set	set;
 	int		i;
@@ -45,15 +45,17 @@ t_set		ls_parsing(char **arg, int count)
 	j = 0;
 	while (i < count && arg[i][j] == '-')
 	{
-		while (arg[i][j])
+		while (arg[i][j + 1])
 		{
+			j++;
 			if (ls_isflag(arg[i][j]))
 				ls_fill_set(&set, arg[i][j]);
 			else
-				return (ls_error(USAGE, NULL));
-			j++;
+				ls_error(USAGE, NULL);
 		}
+		j = 0;
 		i++;
 	}
+	fpf("%b\n", set.flag);
 	return (set);
 }

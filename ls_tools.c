@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 18:31:04 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 11:28:13 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		ft_push_name(t_file *begin, t_file *link, int (*cmp)())
 	tmp = begin;
 	while (tmp->next)
 	{
-		if (tmp->next && cmp(tmp->next->name, link->name) >= 0)
+		if (tmp->next && cmp(tmp->next, link) >= 0)
 		{
 			link->next = tmp->next;
 			tmp->next = link;
@@ -50,7 +50,7 @@ void		ft_push_name(t_file *begin, t_file *link, int (*cmp)())
 	tmp->next = link;
 }
 
-void			ls_display(t_file *begin, int info)
+void		ls_display(t_file *begin, int info)
 {
 	if (info == O_NAME)
 	{

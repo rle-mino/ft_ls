@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:11:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 19:15:24 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 11:29:16 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			ft_ls(char *dir)
 {
 	DIR				*folder;
 	struct dirent	*file;
-	t_file		*files;
+	t_file			*files;
 
 	if (!(folder = opendir(dir)))
 		ls_error(ERRNO, dir);
