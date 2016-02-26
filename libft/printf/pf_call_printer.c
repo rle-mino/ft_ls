@@ -6,7 +6,7 @@
 /*   By: rle-mino <rle-mino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 11:29:48 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/12 22:48:00 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 10:27:11 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		unicode(va_list ap, char conv)
 		return (pf_putcharuni(va_arg(ap, wchar_t)));
 	else if (conv == 'S')
 		return (pf_putstruni(va_arg(ap, wchar_t*)));
+	if (conv == 'b')
+		return (pf_retbin(va_arg(ap, size_t)));
 	return (0);
 }
 

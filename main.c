@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:54:35 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/25 19:24:53 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/02/26 10:30:51 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int			main(int ac, char **av)
 	if (ac == 1)
 		return (ft_ls("."));
 	else
-		ls = ls_parsing(av);
+		ls = ls_parsing(av, ac);
 	return (0);
 }

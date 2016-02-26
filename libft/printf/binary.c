@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_error.c                                         :+:      :+:    :+:   */
+/*   binary.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 17:08:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/26 10:03:23 by rle-mino         ###   ########.fr       */
+/*   Created: 2016/02/26 10:06:05 by rle-mino          #+#    #+#             */
+/*   Updated: 2016/02/26 10:45:17 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "ft_printf.h"
 
-int			ls_error(int error, char *dir)
+int				pf_retbin(size_t nbr)
 {
-	if (errno == EACCES)
+	size_t	cpy;
+	int		i;
+
+	cpy = nbr;
+	i = 0;
+	while (cpy >= 2)
 	{
-		ft_putstr_fd(dir ,2);
-		perror(": Permission denied\n");
+		cpy /= 2;
+		i++;
 	}
-	else if (error == USAGE)
+	ft_putnbr_bin(nbr);
+	return (i + 1);
+}
+
+void			ft_putnbr_bin(size_t nbr)
+{
+	if (nbr >= 2)
 	{
-		ft_putstr_fd("ft_ls: illegal option\n", 2);
-		perror("Usage : ./ft_ls [-Ralrt] [file ...]");
+		ft_putnbr_bin(nbr / 2);
+		ft_putchar(nbr % 2 + '0');
 	}
-	return (0);
+	else
+		ft_putchar(nbr + '0');
 }

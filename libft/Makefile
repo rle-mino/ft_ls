@@ -6,7 +6,7 @@
 #    By: rle-mino <rle-mino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/26 09:50:20 by rle-mino          #+#    #+#              #
-#    Updated: 2016/02/21 22:50:36 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/02/26 10:21:50 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -158,7 +158,8 @@ SRC_PF =	printf/ft_printf.c					\
 			printf/pf_putunsigned_l.c			\
 			printf/pf_putunsigned_j.c			\
 			printf/pf_putunsigned_hh.c			\
-			printf/pf_putunsigned_h.c
+			printf/pf_putunsigned_h.c			\
+			printf/binary.c
 
 
 DOTO	=		$(SRC:.c=.o)
