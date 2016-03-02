@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/02/26 20:10:43 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/02 10:31:58 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_file		*stock_file(struct dirent *file, int info)
 	}
 	return (files);
 }
-
 
 void		*set_sort(t_set set)
 {

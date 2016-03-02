@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 14:54:35 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 10:05:26 by rle-mino         ###   ########.fr       */
+/*   Created: 2016/03/02 09:30:05 by rle-mino          #+#    #+#             */
+/*   Updated: 2016/03/02 09:38:40 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			main(int ac, char **av)
+void		show_me(t_fold *fold)
 {
-	t_set	ls;
-	t_fold	*fold;
+	while (fold)
+	{
+		fpf("name = %s\n", fold->name);
+		fold = fold->next;
+	}
+}
 
-	if (ac == 1)
-		return (ft_ls("."));
-	else
-		ls = ls_parsing(av, ac, &fold);
-	return (0);
+void		show_me_arg(t_set set)
+{
+	if (set.flag & 1)
+		fpf("l:ON\n");
+	if (set.flag & 2)
+		fpf("R:ON\n");
+	if (set.flag & 4)
+		fpf("r:ON\n");
+	if (set.flag & 8)
+		fpf("a:ON\n");
+	if (set.flag & 16)
+		fpf("t:ON\n");
 }
