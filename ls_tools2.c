@@ -6,11 +6,39 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 19:31:01 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 09:55:52 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/02 14:53:56 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void		ls_init(t_fold **fold)
+{
+	struct stat		statbuf;
+	t_fold			*tmp;
+	t_fold			*bck;
+
+	while (*fold && stat((*fold)->name, &statbuf) == -1)
+	{
+		tmp = *fold;
+		ls_error(ERRNO, (*fold)->name);
+		*fold = (*fold)->next;
+		free(tmp);
+	}
+	bck = *fold;
+	while (bck->next)
+	{
+		if (stat(bck->next->name, &statbuf) == -1)
+		{
+			tmp = bck->next;
+			ls_error(ERRNO, bck->next->name);
+			bck->next = bck->next->next;
+			free(tmp);
+		}
+		else
+			bck = bck->next;
+	}
+}
 
 t_fold		*stock_arg(char *name)
 {
