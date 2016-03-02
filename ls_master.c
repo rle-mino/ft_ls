@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ls_master.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 14:54:35 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 22:00:01 by rle-mino         ###   ########.fr       */
+/*   Created: 2016/03/02 18:26:12 by rle-mino          #+#    #+#             */
+/*   Updated: 2016/03/02 21:50:14 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			main(int ac, char **av)
+int			ls_master(t_fold **fold, t_set set)
 {
-	t_set	set;
-	t_fold	*fold;
-
-	fold = NULL;
-	if (ac == 1)
-		return (ft_ls("."));
-	else
-		set = ls_parsing(av, ac, &fold);
-	if (fold->next)
-		ls_init(&fold);
-	ls_master(&fold, set);
+	if (set.flag & 4 || set.flag & 16)
+		ls_sort(fold, set);
 	return (0);
 }

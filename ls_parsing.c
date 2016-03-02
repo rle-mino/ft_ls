@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 12:29:02 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/02 17:11:52 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_set						ls_parsing(char **arg, int count, t_fold **fold)
 		j = 0;
 		i++;
 	}
-	ls_parsing_file(arg, i, fold, count);
+	if (i < count)
+		ls_parsing_file(arg, i, fold, count);
 	return (set);
 }

@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 19:31:01 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 14:53:56 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/02 21:59:54 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void		ls_init(t_fold **fold)
 		free(tmp);
 	}
 	bck = *fold;
-	while (bck->next)
+	while (bck && bck->next)
 	{
 		if (stat(bck->next->name, &statbuf) == -1)
 		{
 			tmp = bck->next;
 			ls_error(ERRNO, bck->next->name);
-			bck->next = bck->next->next;
+			bck->next = bck->next->next ? bck->next->next : NULL;
 			free(tmp);
 		}
 		else

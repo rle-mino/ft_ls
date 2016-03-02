@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 10:31:58 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/02 22:27:20 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ t_file		*stock_file(struct dirent *file, int info)
 		files->next = NULL;
 	}
 	return (files);
-}
-
-void		*set_sort(t_set set)
-{
-	set.flag = set.flag;
-	/*if (set.flag & 4 && set.flag & 16)
-		return (&cmp_time_rev);
-	if (set.flag & 4)
-		return (&cmp_name_rev);
-	if (set.flag & 16)
-		return (&cmp_time);*/
-	return (&cmp_name);
 }
 
 void		ft_pushback(t_file **begin, t_file *link)
