@@ -6,7 +6,7 @@
 #    By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 16:45:33 by rle-mino          #+#    #+#              #
-#    Updated: 2016/03/02 22:43:31 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/03/03 19:41:36 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRC		=	debug.c			\
 			ls_error.c		\
 			ls_tools.c		\
 			ls_cmp.c		\
+			ls_cmp2.c		\
+			ls_get.c		\
 			ls_parsing.c	\
 			ls_sort.c		\
 			ls_sort2.c		\

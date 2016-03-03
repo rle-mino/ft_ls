@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/03 13:39:09 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/03 20:40:30 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_file		*stock_file(struct dirent *file, int info)
 		ls_error(MALL_ERR, NULL);
 	files->name = ft_strdup(file->d_name);
 	files->next = NULL;
-	//fill
+	files->stat = get_stat(files->name);
 	return (files);
 }
 
@@ -52,6 +52,7 @@ void		ls_display(t_file *begin, t_set set)
 {
 	while (begin)
 	{
-		//fill
+		fpf("%s", get_right(begin));
+		begin = begin->next;
 	}
 }

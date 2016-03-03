@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/03 13:18:16 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:44:50 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct			s_ls_fold
 typedef struct			s_ls_file
 {
 	char				*name;
-	time_t				time;
+	struct stat			*stat;
 	struct s_ls_file	*next;
 }						t_file;
 
@@ -78,5 +78,7 @@ int						cmp_rev_time(t_file *a, t_file *b);
 int						cmp_time(t_file *a, t_file *b);
 int						cmp_rev_name(t_file *a, t_file *b);
 int						cmp_name(t_file *s1, t_file *s2);
+char					*get_right(t_file *file);
+struct stat				*get_stat(char *name);
 
 #endif
