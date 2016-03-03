@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 18:27:41 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 22:51:30 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/03 13:18:00 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ long		cmp_fold_time(struct stat a, struct stat b)
 long		cmp_fold_name(t_fold *a, t_fold *b)
 {
 	return ((long)ft_strcmp(a->name, b->name));
+}
+
+int			cmp_rev_time(t_file *a, t_file *b)
+{
+	return (b->time - a->time);
+}
+
+int			cmp_time(t_file *a, t_file *b)
+{
+	return (a->time - b->time);
 }

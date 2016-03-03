@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 22:27:20 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/03 13:39:09 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ t_file		*stock_file(struct dirent *file, int info)
 	t_file	*files;
 
 	if (!(files = ft_memalloc(sizeof(t_file))))
-		return (NULL);
-	if (info == O_NAME)
-	{
-		files->name = ft_strdup(file->d_name);
-		files->next = NULL;
-	}
+		ls_error(MALL_ERR, NULL);
+	files->name = ft_strdup(file->d_name);
+	files->next = NULL;
+	//fill
 	return (files);
 }
 
@@ -50,15 +48,10 @@ void		ft_push(t_file *begin, t_file *link, int (*cmp)())
 	tmp->next = link;
 }
 
-void		ls_display(t_file *begin, int info)
+void		ls_display(t_file *begin, t_set set)
 {
-	if (info == O_NAME)
+	while (begin)
 	{
-		while (begin)
-		{
-			if (begin->name[0] != '.')
-				fpf("%s\n", begin->name);
-			begin = begin->next;
-		}
+		//fill
 	}
 }
