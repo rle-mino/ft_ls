@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 15:42:40 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 19:19:38 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 23:11:37 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char			get_type(mode_t mode)
 {
-	if (S_ISLNK (mode))
+	if (S_ISLNK(mode))
 		return ('l');
-	if (S_ISREG (mode))
+	if (S_ISREG(mode))
 		return ('-');
-	if (S_ISDIR (mode))
+	if (S_ISDIR(mode))
 		return ('d');
-	if (S_ISCHR (mode))
+	if (S_ISCHR(mode))
 		return ('c');
-	if (S_ISBLK (mode))
+	if (S_ISBLK(mode))
 		return ('b');
-	if (S_ISFIFO (mode))
+	if (S_ISFIFO(mode))
 		return ('p');
-	if (S_ISSOCK (mode))
+	if (S_ISSOCK(mode))
 		return ('s');
 	return ('?');
 }

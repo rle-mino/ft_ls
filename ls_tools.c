@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 18:57:37 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 23:10:46 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 struct stat		*get_stat(char *name)
 {
-    struct stat *statbuff;
+	struct stat	*statbuff;
 
-     statbuff = ft_memalloc(sizeof(struct stat));
-     stat(name, statbuff);
-     return (statbuff);
+	statbuff = ft_memalloc(sizeof(struct stat));
+	(void)stat(name, statbuff);
+	return (statbuff);
 }
 
-t_file		*stock_file(struct dirent *file)
+t_file			*stock_file(struct dirent *file)
 {
 	t_file	*files;
 
@@ -33,13 +33,13 @@ t_file		*stock_file(struct dirent *file)
 	return (files);
 }
 
-void		ft_pushback(t_file **begin, t_file *link)
+void			ft_pushback(t_file **begin, t_file *link)
 {
 	link->next = *begin;
 	*begin = link;
 }
 
-void		ft_push(t_file *begin, t_file *link, int (*cmp)())
+void			ft_push(t_file *begin, t_file *link, int (*cmp)())
 {
 	t_file	*tmp;
 
@@ -57,12 +57,12 @@ void		ft_push(t_file *begin, t_file *link, int (*cmp)())
 	tmp->next = link;
 }
 
-void		ls_display(t_file *begin, t_set set)
+void			ls_display(t_file *begin, t_set set)
 {
 	if (set.flag & 1)
 		while (begin)
 		{
-			if (*begin->name == '.' && !(set.flag & 4))
+			if (begin->name[0] == '.' && !(set.flag & 4))
 				begin = begin->next;
 			else
 			{
