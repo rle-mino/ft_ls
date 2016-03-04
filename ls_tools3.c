@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 19:11:30 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 19:38:18 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 22:55:25 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,25 @@ int			ft_nbrlen(long long nbr)
 	return (i + 1);
 }
 
-char		*adjust_t(char *time)
+void		adjust_t(time_t ti)
 {
+	int		ye;
+	char	**tab;
 	int		i;
 
-	i = 0;
-	while (time[i])
+	ye = ti - time(NULL) < -31536000 ? 8 : 7;
+	tab = ft_strsplit(ctime(&ti), ' ');
+	fpf(" %s %2s", tab[1], tab[2]);
+	i = ft_strlen(tab[3]) - 1;
+	while (i)
 	{
-
+		if (tab[3][i] == ':')
+		{
+			tab[3][i] = '\0';
+			break ;
+		}
+		i--;
 	}
+	tab[4][ft_strlen(tab[4]) - 1] = '\0';
+	fpf(" %5s", ye == 7 ? tab[3] : tab[4]);
 }

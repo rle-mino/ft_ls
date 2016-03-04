@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 19:31:01 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 19:27:05 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 22:46:31 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void			print_file(t_file *begin, t_set set)
 	fpf(" %*s", set.lid, getpwuid(begin->stat->st_uid)->pw_name);
 	fpf(" %*s", set.lg, getgrgid(begin->stat->st_gid)->gr_name);
 	fpf(" %*d", set.lsi, begin->stat->st_size);
-	fpf(" %*s", set.lda, adjust_t(ctime(&begin->stat->st_mtime)));
+	adjust_t(begin->stat->st_mtime);
 	fpf(" %s\n", begin->name);
 }

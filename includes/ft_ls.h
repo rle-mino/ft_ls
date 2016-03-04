@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 19:27:03 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 22:44:43 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ char					*get_right(t_file *file);
 struct stat				*get_stat(char *name);
 void					print_file(t_file *begin, t_set set);
 int						ft_nbrlen(long long nbr);
-char					*adjust_t(char *time);
+void					adjust_t(time_t ti);
 
 #endif
