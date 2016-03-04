@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 13:53:11 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 19:27:03 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ typedef struct			s_ls_file
 typedef struct			s_ls_set
 {
 	int					flag;
+	int					lid;
+	int					lg;
+	int					lsi;
+	int					lda;
 }						t_set;
 
 void					show_me(t_fold *fold);
@@ -80,5 +84,8 @@ int						cmp_rev_name(t_file *a, t_file *b);
 int						cmp_name(t_file *s1, t_file *s2);
 char					*get_right(t_file *file);
 struct stat				*get_stat(char *name);
+void					print_file(t_file *begin, t_set set);
+int						ft_nbrlen(long long nbr);
+char					*adjust_t(char *time);
 
 #endif
