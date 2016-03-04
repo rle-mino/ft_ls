@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/03 19:44:50 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 13:53:11 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void					show_me(t_fold *fold);
 void					show_me_arg(t_set set);
 int						ft_ls(char *dir, t_set set);
 int						ls_error(int error, char *str);
-t_file					*stock_file(struct dirent *file, int info);
+t_file					*stock_file(struct dirent *file);
 void					ft_pushback(t_file **begin, t_file *link);
 void					ft_push(t_file *begin, t_file *link, int cmp());
 void					ft_pushback_fold(t_fold **begin, t_fold *link);

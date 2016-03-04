@@ -6,13 +6,22 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/03 20:40:30 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:26:12 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_file		*stock_file(struct dirent *file, int info)
+struct stat		*get_stat(char *name)
+{
+    struct stat *statbuff;
+
+     statbuff = ft_memalloc(sizeof(struct stat));
+     stat(name, statbuff);
+     return (statbuff);
+}
+
+t_file		*stock_file(struct dirent *file)
 {
 	t_file	*files;
 
@@ -50,6 +59,7 @@ void		ft_push(t_file *begin, t_file *link, int (*cmp)())
 
 void		ls_display(t_file *begin, t_set set)
 {
+	set.flag = 0;
 	while (begin)
 	{
 		fpf("%s", get_right(begin));

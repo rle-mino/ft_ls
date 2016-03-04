@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 18:27:41 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/03 13:18:00 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/04 13:50:04 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ long		cmp_fold_name(t_fold *a, t_fold *b)
 
 int			cmp_rev_time(t_file *a, t_file *b)
 {
-	return (b->time - a->time);
+	return (b->stat->st_mtime - a->stat->st_mtime);
 }
 
 int			cmp_time(t_file *a, t_file *b)
 {
-	return (a->time - b->time);
+	return (a->stat->st_mtime - b->stat->st_mtime);
 }
