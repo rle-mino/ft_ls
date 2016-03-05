@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:11:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 19:16:14 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 12:02:36 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ t_set		init_set_max(t_set set, t_file *begin)
 	set.lda = 0;
 	while (begin)
 	{
-		lid = ft_strlen(getpwuid(begin->stat->st_uid)->pw_name);
-		lg = ft_strlen(getgrgid(begin->stat->st_gid)->gr_name);
-		lda = ft_strlen(ctime(&begin->stat->st_mtime));
-		lsi = ft_nbrlen(begin->stat->st_size);
+		lid = ft_strlen(getpwuid(begin->stat.st_uid)->pw_name);
+		lg = ft_strlen(getgrgid(begin->stat.st_gid)->gr_name);
+		lda = ft_strlen(ctime(&begin->stat.st_mtime));
+		lsi = ft_nbrlen(begin->stat.st_size);
 		set.lid = lid > set.lid ? lid : set.lid;
 		set.lg = lg > set.lg ? lg : set.lg;
 		set.lsi = lsi > set.lsi ? lsi : set.lsi;
@@ -69,9 +69,9 @@ int			ft_ls(char *dir, t_set set)
 		return (ls_error(ERRNO, dir));
 	cmp = set_cmp(set);
 	if ((file = readdir(folder)))
-		files = stock_file(file);
+		files = stock_file(file, dir);
 	while ((file = readdir(folder)))
-		ls_cmp(&files, stock_file(file), cmp);
+		ls_cmp(&files, stock_file(file, dir), cmp);
 	set = init_set_max(set, files);
 	ls_display(files, set);
 	closedir(folder);

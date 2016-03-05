@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 15:42:40 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 23:11:37 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 11:44:39 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char			*get_right(t_file *file)
 	char	*right;
 	mode_t	mode;
 
-	mode = file->stat->st_mode;
+	mode = file->stat.st_mode;
 	if (!(right = ft_memalloc(12)))
 		ls_error(MALL_ERR, NULL);
 	right[0] = get_type(mode);

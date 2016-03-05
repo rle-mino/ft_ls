@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 23:09:52 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 12:04:10 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <grp.h>
 # include <errno.h>
 # include <stdio.h>
+# include <sys/acl.h>
 
 # define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
 
@@ -44,7 +45,8 @@ typedef struct			s_ls_fold
 typedef struct			s_ls_file
 {
 	char				*name;
-	struct stat			*stat;
+	char				*path;
+	struct stat			stat;
 	struct s_ls_file	*next;
 }						t_file;
 
@@ -61,7 +63,7 @@ void					show_me(t_fold *fold);
 void					show_me_arg(t_set set);
 int						ft_ls(char *dir, t_set set);
 int						ls_error(int error, char *str);
-t_file					*stock_file(struct dirent *file);
+t_file					*stock_file(struct dirent *file, char *path);
 void					ft_pushback(t_file **begin, t_file *link);
 void					ft_push(t_file *begin, t_file *link, int cmp());
 void					ft_pushback_fold(t_fold **begin, t_fold *link);
@@ -78,8 +80,8 @@ void					ls_sort(t_fold **fold, t_set set);
 t_fold					*sort_t(t_fold *start);
 t_fold					*sort_r(t_fold *start);
 t_fold					*sort_tr(t_fold *start);
-int						cmp_rev_time(t_file *a, t_file *b);
-int						cmp_time(t_file *a, t_file *b);
+long					cmp_rev_time(t_file *a, t_file *b);
+long					cmp_time(t_file *a, t_file *b);
 int						cmp_rev_name(t_file *a, t_file *b);
 int						cmp_name(t_file *s1, t_file *s2);
 char					*get_right(t_file *file);

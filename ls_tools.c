@@ -6,30 +6,25 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 23:10:46 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 12:09:29 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-struct stat		*get_stat(char *name)
-{
-	struct stat	*statbuff;
-
-	statbuff = ft_memalloc(sizeof(struct stat));
-	(void)stat(name, statbuff);
-	return (statbuff);
-}
-
-t_file			*stock_file(struct dirent *file)
+t_file			*stock_file(struct dirent *file, char *path)
 {
 	t_file	*files;
+	char	*tmp;
 
 	if (!(files = ft_memalloc(sizeof(t_file))))
 		ls_error(MALL_ERR, NULL);
-	files->name = ft_strdup(file->d_name);
+	files->path = ft_strjoin(path, "/");
+	files->name = file->d_name;
+	tmp = ft_strjoin(files->path, files->name);
 	files->next = NULL;
-	files->stat = get_stat(files->name);
+	(void)stat(tmp, &files->stat);
+	free(tmp);
 	return (files);
 }
 
@@ -62,7 +57,7 @@ void			ls_display(t_file *begin, t_set set)
 	if (set.flag & 1)
 		while (begin)
 		{
-			if (begin->name[0] == '.' && !(set.flag & 4))
+			if (begin->name[0] == '.' && !(set.flag & 8))
 				begin = begin->next;
 			else
 			{

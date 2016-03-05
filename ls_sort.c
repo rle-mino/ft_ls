@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 18:41:22 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 22:53:06 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 11:48:47 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,4 @@ void		ls_sort(t_fold **fold, t_set set)
 		*fold = sort_r(*fold);
 	else if (set.flag & 16)
 		*fold = sort_t(*fold);
-	show_me(*fold);
 }
