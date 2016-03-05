@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 20:41:04 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 20:55:06 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 21:41:15 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void		ls_filter(t_fold **fold, t_set set)
 	while (bck && bck->next)
 		get_file(&bck, statb, &files, set);
 	set = init_set_max(set, files);
-	ls_display(files, set);
+	if (files)
+		ls_display(files, set);
 }

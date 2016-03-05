@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:11:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 20:39:09 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 21:37:59 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_set		init_set_max(t_set set, t_file *begin)
 	set.lg = 0;
 	set.lsi = 0;
 	set.lda = 0;
+	set.total = 0;
 	while (begin)
 	{
 		lid = ft_strlen(getpwuid(begin->stat.st_uid)->pw_name);
@@ -45,6 +46,7 @@ t_set		init_set_max(t_set set, t_file *begin)
 		set.lg = lg > set.lg ? lg : set.lg;
 		set.lsi = lsi > set.lsi ? lsi : set.lsi;
 		set.lda = lda > set.lda ? lda : set.lda;
+		set.total += begin->stat.st_blocks;
 		begin = begin->next;
 	}
 	return (set);

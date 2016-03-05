@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 20:40:40 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 21:40:39 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			ft_push(t_file *begin, t_file *link, int (*cmp)())
 
 void			ls_display(t_file *begin, t_set set)
 {
-	if (set.flag & 1)
+	if (set.flag & 1 && fpf("total %d\n", set.total))
 		while (begin)
 		{
 			if (begin->name[0] == '.' && !(set.flag & 8))

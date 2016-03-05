@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 20:35:02 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 21:40:33 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct			s_ls_set
 	int					lg;
 	int					lsi;
 	int					lda;
+	int					total;
 }						t_set;
 
 void					show_me(t_fold *fold);
