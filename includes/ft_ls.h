@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 12:04:10 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 20:35:02 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,21 @@ enum
 	MALL_ERR
 };
 
-typedef struct			s_ls_fold
-{
-	char				*name;
-	struct s_ls_fold	*next;
-}						t_fold;
+typedef	struct stat		t_stat;
 
 typedef struct			s_ls_file
 {
 	char				*name;
 	char				*path;
-	struct stat			stat;
+	t_stat				stat;
 	struct s_ls_file	*next;
 }						t_file;
+
+typedef struct			s_ls_fold
+{
+	char				*name;
+	struct s_ls_fold	*next;
+}						t_fold;
 
 typedef struct			s_ls_set
 {
@@ -85,9 +87,14 @@ long					cmp_time(t_file *a, t_file *b);
 int						cmp_rev_name(t_file *a, t_file *b);
 int						cmp_name(t_file *s1, t_file *s2);
 char					*get_right(t_file *file);
-struct stat				*get_stat(char *name);
 void					print_file(t_file *begin, t_set set);
 int						ft_nbrlen(long long nbr);
 void					adjust_t(time_t ti);
+int						ls_file(char *dir, t_set set);
+void					ls_cmp(t_file **file, t_file *new, int (*cmp)());
+void					*set_cmp(t_set set);
+t_file					*stock_file_arg(char *name, struct stat statb);
+void					ls_filter(t_fold **fold, t_set set);
+t_set					init_set_max(t_set set, t_file *begin);
 
 #endif

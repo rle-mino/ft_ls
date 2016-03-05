@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 19:11:30 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/04 22:55:25 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 19:14:32 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,16 @@ void		adjust_t(time_t ti)
 	}
 	tab[4][ft_strlen(tab[4]) - 1] = '\0';
 	fpf(" %5s", ye == 7 ? tab[3] : tab[4]);
+}
+
+t_file		*stock_file_arg(char *name, struct stat statb)
+{
+	t_file	*file;
+
+	file = ft_memalloc(sizeof(t_file));
+	file->name = name;
+	file->stat = statb;
+	file->path = NULL;
+	file->next = NULL;
+	return (file);
 }

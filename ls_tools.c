@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 12:09:29 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/05 20:40:40 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_file			*stock_file(struct dirent *file, char *path)
 	if (!(files = ft_memalloc(sizeof(t_file))))
 		ls_error(MALL_ERR, NULL);
 	files->path = ft_strjoin(path, "/");
-	files->name = file->d_name;
+	files->name = ft_strdup(file->d_name);
 	tmp = ft_strjoin(files->path, files->name);
 	files->next = NULL;
 	(void)stat(tmp, &files->stat);
