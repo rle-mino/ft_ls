@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 19:31:01 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 16:11:45 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/06 13:34:06 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_fold		*stock_arg(char *name)
 
 	if (!(fold = ft_memalloc(sizeof(t_fold))))
 		ls_error(MALL_ERR, NULL);
-	fold->name = name;
+	fold->name = ft_strdup(name);
 	fold->next = NULL;
 	return (fold);
 }

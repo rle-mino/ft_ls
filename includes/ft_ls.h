@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 21:40:33 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/06 13:38:45 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct			s_ls_set
 	int					lg;
 	int					lsi;
 	int					lda;
+	int					file;
 	int					total;
 }						t_set;
 
@@ -95,7 +96,9 @@ int						ls_file(char *dir, t_set set);
 void					ls_cmp(t_file **file, t_file *new, int (*cmp)());
 void					*set_cmp(t_set set);
 t_file					*stock_file_arg(char *name, struct stat statb);
-void					ls_filter(t_fold **fold, t_set set);
+void					ls_filter(t_fold **fold, t_set *set);
 t_set					init_set_max(t_set set, t_file *begin);
+void					free_files(t_file *files);
+void					free_fold(t_fold *fold);
 
 #endif

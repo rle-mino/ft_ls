@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_master.c                                        :+:      :+:    :+:   */
+/*   ls_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/02 18:26:12 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 13:35:13 by rle-mino         ###   ########.fr       */
+/*   Created: 2016/03/06 13:20:03 by rle-mino          #+#    #+#             */
+/*   Updated: 2016/03/06 13:31:04 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			ls_master(t_fold **fold, t_set set)
+void		free_files(t_file *files)
 {
-	ls_filter(fold, &set);
-	if (set.flag & 4 || set.flag & 16)
-		ls_sort(fold, set);
-	if (set.flag & 2)
-		exit(0);
-	if (!(*fold) && !(set.file))
-		ft_ls(".", set);
-	else
-		while (*fold)
-		{
-			if ((*fold)->next || set.file)
-				fpf("%s:\n", (*fold)->name);
-			ft_ls((*fold)->name, set);
-			*fold = (*fold)->next;
-		}
-	return (0);
+	t_file	*tmp;
+
+	while (files)
+	{
+		tmp = files->next;
+		if (files->name)
+			free(files->name);
+		if (files->path)
+			free(files->path);
+		free(files);
+		files = tmp;
+	}
+}
+
+void		free_fold(t_fold *fold)
+{
+	if (fold->name)
+		free(fold->name);
+	free(fold);
 }

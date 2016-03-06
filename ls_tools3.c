@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 19:11:30 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 19:14:32 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/06 13:31:23 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void		adjust_t(time_t ti)
 	char	**tab;
 	int		i;
 
-	ye = ti - time(NULL) < -31536000 ? 8 : 7;
+	ye = ti - time(NULL) < -15778463 ? 8 : 7;
+	ye = ti - time(NULL) > 0 ? 7 : 8;
 	tab = ft_strsplit(ctime(&ti), ' ');
 	fpf(" %s %2s", tab[1], tab[2]);
 	i = ft_strlen(tab[3]) - 1;
@@ -53,7 +54,7 @@ t_file		*stock_file_arg(char *name, struct stat statb)
 	t_file	*file;
 
 	file = ft_memalloc(sizeof(t_file));
-	file->name = name;
+	file->name = ft_strdup(name);
 	file->stat = statb;
 	file->path = NULL;
 	file->next = NULL;

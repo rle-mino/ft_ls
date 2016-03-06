@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:11:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 21:37:59 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/06 14:19:44 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_set		init_set_max(t_set set, t_file *begin)
 		set.lg = lg > set.lg ? lg : set.lg;
 		set.lsi = lsi > set.lsi ? lsi : set.lsi;
 		set.lda = lda > set.lda ? lda : set.lda;
-		set.total += begin->stat.st_blocks;
+		if (set.flag & 8 || (!(set.flag & 8) && begin->name[0] != '.'))
+			set.total += begin->stat.st_blocks;
 		begin = begin->next;
 	}
 	return (set);
@@ -76,6 +77,7 @@ int			ft_ls(char *dir, t_set set)
 		ls_cmp(&files, stock_file(file, dir), cmp);
 	set = init_set_max(set, files);
 	ls_display(files, set);
+	free_files(files);
 	closedir(folder);
 	return (1);
 }

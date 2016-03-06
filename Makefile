@@ -6,7 +6,7 @@
 #    By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 16:45:33 by rle-mino          #+#    #+#              #
-#    Updated: 2016/03/05 20:53:34 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/03/06 13:23:36 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC		=	debug.c			\
 			ls_sort2.c		\
 			ls_master.c		\
 			ls_filter.c		\
+			ls_free.c		\
 			main.c			\
 
 DOTO	=	$(SRC:.c=.o)
