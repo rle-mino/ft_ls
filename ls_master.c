@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 18:26:12 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 13:35:13 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/06 15:34:47 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			ls_master(t_fold **fold, t_set set)
 		while (*fold)
 		{
 			if ((*fold)->next || set.file)
-				fpf("%s:\n", (*fold)->name);
+				fpf("\n%s:\n", (*fold)->name);
 			ft_ls((*fold)->name, set);
 			*fold = (*fold)->next;
 		}

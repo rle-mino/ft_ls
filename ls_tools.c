@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 13:46:09 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/06 16:57:01 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			ls_display(t_file *begin, t_set set)
 	else
 		while (begin)
 		{
-			if (*begin->name == '.' && !(set.flag & 4))
+			if (*begin->name == '.' && !(set.flag & 8))
 				begin = begin->next;
 			else if (fpf("%s\n", begin->name))
 				begin = begin->next;
