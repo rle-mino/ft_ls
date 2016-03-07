@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 19:11:30 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/07 19:28:53 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/07 19:55:48 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_file		*stock_file_arg(char *name, struct stat statb)
 	file = ft_memalloc(sizeof(t_file));
 	file->name = ft_strdup(name);
 	file->stat = statb;
-	if ((lstat(file->name, &statl)) && S_ISLNK(statl.st_mode))
+	if (!(lstat(file->name, &statl)) && S_ISLNK(statl.st_mode))
 	{
 		file->stat = statl;
 		file->symb = ft_memalloc(statl.st_size + 1);

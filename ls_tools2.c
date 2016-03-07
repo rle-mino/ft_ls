@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/26 19:31:01 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 21:16:26 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/07 20:10:06 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,9 @@ void		print_file(t_file *begin, t_set set)
 	fpf(" %*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
 	fpf(" %*d", set.lsi + 1, begin->stat.st_size);
 	adjust_t(begin->stat.st_mtime);
-	fpf(" %s%s\n", begin->name, begin->symb != NULL ? begin->symb : "");
+	fpf(" %s", begin->name);
+	if (begin->symb)
+		fpf(" -> %s\n", begin->symb);
+	else
+		fpf("\n");
 }
