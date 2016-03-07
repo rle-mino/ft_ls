@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 17:22:42 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/07 18:16:34 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct			s_ls_file
 {
 	char				*name;
 	char				*path;
+	char				*symb;
 	t_stat				stat;
 	struct s_ls_file	*next;
 }						t_file;
@@ -74,7 +75,7 @@ void					ft_pushback_fold(t_fold **begin, t_fold *link);
 void					ft_push_fold(t_fold *begin, t_fold *link);
 long					cmp_fold_time(struct stat a, struct stat b);
 long					cmp_fold_name(t_fold *a, t_fold *b);
-void					ls_display(t_file *begin, t_set set);
+int						ls_display(t_file *begin, t_set set);
 t_set					ls_parsing(char **arg, int count, t_fold **fold);
 int						ls_isflag(char c);
 t_fold					*stock_arg(char *name);
@@ -100,5 +101,7 @@ void					ls_filter(t_fold **fold, t_set *set);
 t_set					init_set_max(t_set set, t_file *begin);
 void					free_files(t_file *files);
 void					free_fold(t_fold *fold);
+int						is_folder(char *name, t_stat *statb);
+int						is_symb_lnk(char *link, t_stat *statl);
 
 #endif

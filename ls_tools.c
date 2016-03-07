@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 17:05:14 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/07 18:17:31 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			ft_push(t_file *begin, t_file *link, int (*cmp)())
 	tmp->next = link;
 }
 
-void			ls_display(t_file *begin, t_set set)
+int				ls_display(t_file *begin, t_set set)
 {
 	if (set.flag & 1)
 	{
@@ -77,4 +77,5 @@ void			ls_display(t_file *begin, t_set set)
 			else if (fpf("%s\n", begin->name))
 				begin = begin->next;
 		}
+	return (1);
 }

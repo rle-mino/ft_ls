@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 15:42:40 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/05 11:44:39 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/07 19:25:31 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			get_r_grp(mode_t mode)
 char			get_r_oth(mode_t mode)
 {
 	if (S_IXOTH & mode && S_ISVTX & mode)
-		return ('s');
+		return ('t');
 	if (S_IXOTH & mode && S_ISVTX ^ mode)
 		return ('x');
 	if (S_IXOTH ^ mode && S_ISVTX & mode)
