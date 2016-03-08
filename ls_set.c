@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:08:23 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 15:39:18 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 17:36:21 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		init_set(t_set *set)
 	set->lsi = 0;
 	set->lda = 0;
 	set->total = 0;
+	set->lnl = 0;
 }
 
 t_set		init_set_max(t_set set, t_file *begin, int lid, int lg)
@@ -29,7 +30,7 @@ t_set		init_set_max(t_set set, t_file *begin, int lid, int lg)
 	init_set(&set);
 	while (begin)
 	{
-		if (!(set.flag & 4) && begin->name[0] == '.')
+		if (!(set.flag & 8) && begin->name[0] == '.')
 			begin = begin->next;
 		else
 		{
@@ -37,12 +38,13 @@ t_set		init_set_max(t_set set, t_file *begin, int lid, int lg)
 			lg = ft_strlen(getgrgid(begin->stat.st_gid)->gr_name);
 			lda = ft_strlen(ctime(&begin->stat.st_mtime));
 			lsi = ft_nbrlen(begin->stat.st_size);
+			set.lnl = set.lnl < ft_nbrlen(begin->stat.st_nlink) ?
+						ft_nbrlen(begin->stat.st_nlink) : set.lnl;
 			set.lid = lid > set.lid ? lid : set.lid;
 			set.lg = lg > set.lg ? lg : set.lg;
 			set.lsi = lsi > set.lsi ? lsi : set.lsi;
 			set.lda = lda > set.lda ? lda : set.lda;
-			if (set.flag & 8 || (!(set.flag & 8) && begin->name[0] != '.'))
-				set.total += begin->stat.st_blocks;
+			set.total += begin->stat.st_blocks;
 			begin = begin->next;
 		}
 	}

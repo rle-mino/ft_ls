@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 15:37:13 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 17:18:58 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct			s_ls_set
 	int					lsi;
 	int					lda;
 	int					file;
+	int					lnl;
 	int					total;
 }						t_set;
 

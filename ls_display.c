@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:12:45 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 15:38:39 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 17:42:10 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int				ls_display(t_file *begin, t_set set)
 void			print_file(t_file *begin, t_set set)
 {
 	fpf("%s", get_right(begin));
-	fpf(" %2d", begin->stat.st_nlink);
+	fpf(" %*d", set.lnl,begin->stat.st_nlink);
 	fpf(" %*s", set.lid, getpwuid(begin->stat.st_uid)->pw_name);
-	fpf(" %*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
-	fpf(" %*d", set.lsi + 1, begin->stat.st_size);
+	fpf("  %-*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
+	fpf(" %*d", set.lsi, begin->stat.st_size);
 	adjust_t(begin->stat.st_mtime);
 	fpf(" %s", begin->name);
 	if (begin->symb)
