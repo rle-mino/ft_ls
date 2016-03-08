@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/07 18:17:31 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 15:15:53 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ t_file			*stock_file(struct dirent *file, char *path)
 	files->name = ft_strdup(file->d_name);
 	tmp = ft_strjoin(files->path, files->name);
 	files->next = NULL;
-	(void)stat(tmp, &files->stat);
+	(void)lstat(tmp, &files->stat);
+	if (S_ISLNK(files->stat.st_mode))
+	{
+		files->symb = ft_memalloc(files->stat.st_size + 1);
+		readlink(tmp, files->symb, files->stat.st_size);
+	}
+	else
+		files->symb = NULL;
 	free(tmp);
 	return (files);
 }
@@ -50,32 +57,4 @@ void			ft_push(t_file *begin, t_file *link, int (*cmp)())
 		tmp = tmp->next;
 	}
 	tmp->next = link;
-}
-
-int				ls_display(t_file *begin, t_set set)
-{
-	if (set.flag & 1)
-	{
-		if (!set.file)
-			fpf("total %d\n", set.total);
-		while (begin)
-		{
-			if (begin->name[0] == '.' && !(set.flag & 8))
-				begin = begin->next;
-			else
-			{
-				print_file(begin, set);
-				begin = begin->next;
-			}
-		}
-	}
-	else
-		while (begin)
-		{
-			if (*begin->name == '.' && !(set.flag & 8))
-				begin = begin->next;
-			else if (fpf("%s\n", begin->name))
-				begin = begin->next;
-		}
-	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:54:35 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 17:22:58 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 14:39:41 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ int			main(int ac, char **av)
 
 	fold = NULL;
 	set = ls_parsing(av, ac, &fold);
-	if (fold && fold->next)
+	if (fold)
+	{
 		ls_init(&fold);
+		if (fold == NULL)
+			return (0);
+	}
 	ls_master(&fold, set);
 	return (0);
 }

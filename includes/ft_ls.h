@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/07 18:16:34 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 15:37:13 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ int						ft_nbrlen(long long nbr);
 void					adjust_t(time_t ti);
 int						ls_file(char *dir, t_set set);
 void					ls_cmp(t_file **file, t_file *new, int (*cmp)());
-void					*set_cmp(t_set set);
 t_file					*stock_file_arg(char *name, struct stat statb);
 void					ls_filter(t_fold **fold, t_set *set);
-t_set					init_set_max(t_set set, t_file *begin);
 void					free_files(t_file *files);
 void					free_fold(t_fold *fold);
 int						is_folder(char *name, t_stat *statb);
 int						is_symb_lnk(char *link, t_stat *statl);
+t_set					init_set_max(t_set set, t_file *begin, int lid, int lg);
+void					*set_cmp(t_set set);
 
 #endif

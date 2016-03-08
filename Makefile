@@ -6,7 +6,7 @@
 #    By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 16:45:33 by rle-mino          #+#    #+#              #
-#    Updated: 2016/03/06 13:23:36 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/03/08 15:16:33 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,11 @@ SRC		=	debug.c			\
 			ls_tools2.c		\
 			ls_tools3.c		\
 			ls_cmp.c		\
+			ls_set.c		\
 			ls_cmp2.c		\
 			ls_get.c		\
 			ls_parsing.c	\
+			ls_display.c	\
 			ls_sort.c		\
 			ls_sort2.c		\
 			ls_master.c		\
@@ -46,6 +48,9 @@ KWHI	=		"\033[1;37m"
 FLAGS	=	-Wall -Wextra -Werror
 
 #RULES
+
+.PHONY: all, clean, fclean, re
+
 all: $(NAME)
 
 $(NAME): $(DOTO) 
