@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 15:15:53 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 20:02:42 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_file			*stock_file(struct dirent *file, char *path)
 	(void)lstat(tmp, &files->stat);
 	if (S_ISLNK(files->stat.st_mode))
 	{
-		files->symb = ft_memalloc(files->stat.st_size + 1);
-		readlink(tmp, files->symb, files->stat.st_size);
+		files->symb = ft_memalloc(1024);
+		readlink(tmp, files->symb, 1024);
 	}
 	else
 		files->symb = NULL;

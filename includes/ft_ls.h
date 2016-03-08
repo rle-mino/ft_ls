@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 17:18:58 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 18:49:56 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <sys/acl.h>
 
 # define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
+#define MINORBITS       24
+#define MINORMASK       (0xffffff)
+
+#define MAJOR(dev)      ((unsigned int) ((dev) >> MINORBITS))
+#define MINOR(dev)      ((unsigned int) ((dev) & MINORMASK))
+#define MKDEV(ma,mi)    (((ma) << MINORBITS) | (mi))
 
 enum
 {

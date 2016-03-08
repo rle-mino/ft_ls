@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:12:45 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 17:42:10 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 19:17:50 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,15 @@ void			print_file(t_file *begin, t_set set)
 {
 	fpf("%s", get_right(begin));
 	fpf(" %*d", set.lnl,begin->stat.st_nlink);
-	fpf(" %*s", set.lid, getpwuid(begin->stat.st_uid)->pw_name);
+	fpf(" %-*s", set.lid, getpwuid(begin->stat.st_uid)->pw_name);
 	fpf("  %-*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
-	fpf(" %*d", set.lsi, begin->stat.st_size);
+	if (S_ISCHR(begin->stat.st_mode))
+	{
+		fpf("  %2d,", MAJOR(begin->stat.st_rdev));
+		fpf(" %3d", MINOR(begin->stat.st_rdev));
+	}
+	else
+		fpf(" %*d", set.lsi, begin->stat.st_size);
 	adjust_t(begin->stat.st_mtime);
 	fpf(" %s", begin->name);
 	if (begin->symb)
