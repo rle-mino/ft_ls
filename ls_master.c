@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 18:26:12 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 21:45:57 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 20:58:26 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int			ls_master(t_fold **fold, t_set set)
 	if (set.flag & 4 || set.flag & 16)
 		ls_sort(fold, set);
 	if (set.flag & 2)
-		exit(0);
+		while (*fold)
+		{
+			ls_recu(*fold, set);
+			*fold = (*fold)->next;
+		}
 	if (!(*fold) && !(set.file))
 		ft_ls(".", set);
 	else

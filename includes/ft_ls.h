@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 18:49:56 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/08 20:58:05 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int						is_folder(char *name, t_stat *statb);
 int						is_symb_lnk(char *link, t_stat *statl);
 t_set					init_set_max(t_set set, t_file *begin, int lid, int lg);
 void					*set_cmp(t_set set);
+t_fold					*ls_recu(t_fold *fold, t_set set);
 
 #endif
