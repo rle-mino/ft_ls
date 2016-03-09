@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 17:07:46 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/09 15:59:44 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ static int					ls_parsing_file(char **argv, int i, t_fold **fold,
 	if (argv[i][j] == '-' && argv[i][j + 1] == '-')
 		i++;
 	if (i < count)
-		*fold = stock_arg(argv[i++]);
+	{
+		*fold = stock_fold(argv[i], argv[i]);
+		i++;
+	}
 	while (i < count)
 	{
 		if (ft_strcmp(argv[i], (*fold)->name) < 0)
-			ft_pushback_fold(fold, stock_arg(argv[i]));
+			ft_pushback_fold(fold, stock_fold(argv[i], argv[i]));
 		else
-			ft_push_fold(*fold, stock_arg(argv[i]));
+			ft_push_fold(*fold, stock_fold(argv[i], argv[i]));
 		i++;
 	}
 	return (0);

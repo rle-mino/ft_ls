@@ -6,25 +6,11 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 20:41:04 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 15:38:10 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/09 23:57:00 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-int			is_folder(char *link, t_stat *statb)
-{
-	if (!stat(link, statb) && S_ISDIR(statb->st_mode))
-		return (1);
-	return (0);
-}
-
-int			is_symb_lnk(char *link, t_stat *statl)
-{
-	if (!lstat(link, statl) && S_ISLNK(statl->st_mode))
-		return (1);
-	return (0);
-}
 
 void		get_file(t_fold *bck, t_file **files, t_set set)
 {
@@ -60,6 +46,7 @@ void		ls_filter(t_fold **fold, t_set *set)
 	t_file			*files;
 
 	files = NULL;
+	set->file = 0;
 	while (*fold && (!is_folder((*fold)->name, &stat) ||
 			(is_symb_lnk((*fold)->name, &statl) && set->flag & 1)))
 	{

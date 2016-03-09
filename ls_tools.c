@@ -5,56 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 20:02:42 by rle-mino         ###   ########.fr       */
+/*   Created: 2016/02/26 19:31:01 by rle-mino          #+#    #+#             */
+/*   Updated: 2016/03/09 11:31:17 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_file			*stock_file(struct dirent *file, char *path)
+void		ls_init(t_fold **fold)
 {
-	t_file	*files;
-	char	*tmp;
+	struct stat		statbuf;
+	t_fold			*tmp;
+	t_fold			*bck;
 
-	if (!(files = ft_memalloc(sizeof(t_file))))
-		ls_error(MALL_ERR, NULL);
-	files->path = ft_strjoin(path, "/");
-	files->name = ft_strdup(file->d_name);
-	tmp = ft_strjoin(files->path, files->name);
-	files->next = NULL;
-	(void)lstat(tmp, &files->stat);
-	if (S_ISLNK(files->stat.st_mode))
+	while (*fold && stat((*fold)->name, &statbuf) == -1)
 	{
-		files->symb = ft_memalloc(1024);
-		readlink(tmp, files->symb, 1024);
+		tmp = *fold;
+		ls_error(ERRNO, (*fold)->name);
+		*fold = (*fold)->next;
+		free(tmp);
 	}
-	else
-		files->symb = NULL;
-	free(tmp);
-	return (files);
-}
-
-void			ft_pushback(t_file **begin, t_file *link)
-{
-	link->next = *begin;
-	*begin = link;
-}
-
-void			ft_push(t_file *begin, t_file *link, int (*cmp)())
-{
-	t_file	*tmp;
-
-	tmp = begin;
-	while (tmp->next)
+	bck = *fold;
+	while (bck && bck->next)
 	{
-		if (tmp->next && cmp(tmp->next, link) >= 0)
+		if (stat(bck->next->name, &statbuf) == -1)
 		{
-			link->next = tmp->next;
-			tmp->next = link;
-			return ;
+			tmp = bck->next;
+			ls_error(ERRNO, bck->next->name);
+			bck->next = bck->next->next ? bck->next->next : NULL;
+			free(tmp);
 		}
-		tmp = tmp->next;
+		else
+			bck = bck->next;
 	}
-	tmp->next = link;
+}
+
+int			ft_nbrlen(long long nbr)
+{
+	int		i;
+
+	i = 0;
+	while (nbr > 9)
+	{
+		nbr /= 10;
+		i++;
+	}
+	return (i + 1);
 }

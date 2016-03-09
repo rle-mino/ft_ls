@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 20:58:05 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/09 17:30:44 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ enum
 };
 
 typedef	struct stat		t_stat;
+typedef struct dirent	t_dirent;
 
 typedef struct			s_ls_file
 {
@@ -56,6 +57,7 @@ typedef struct			s_ls_file
 typedef struct			s_ls_fold
 {
 	char				*name;
+	char				*path;
 	struct s_ls_fold	*next;
 }						t_fold;
 
@@ -75,7 +77,6 @@ void					show_me(t_fold *fold);
 void					show_me_arg(t_set set);
 int						ft_ls(char *dir, t_set set);
 int						ls_error(int error, char *str);
-t_file					*stock_file(struct dirent *file, char *path);
 void					ft_pushback(t_file **begin, t_file *link);
 void					ft_push(t_file *begin, t_file *link, int cmp());
 void					ft_pushback_fold(t_fold **begin, t_fold *link);
@@ -85,7 +86,6 @@ long					cmp_fold_name(t_fold *a, t_fold *b);
 int						ls_display(t_file *begin, t_set set);
 t_set					ls_parsing(char **arg, int count, t_fold **fold);
 int						ls_isflag(char c);
-t_fold					*stock_arg(char *name);
 void					ls_init(t_fold **fold);
 int						ls_master(t_fold **fold, t_set set);
 void					ls_sort(t_fold **fold, t_set set);
@@ -103,13 +103,20 @@ void					adjust_t(time_t ti);
 int						ls_file(char *dir, t_set set);
 void					ls_cmp(t_file **file, t_file *new, int (*cmp)());
 t_file					*stock_file_arg(char *name, struct stat statb);
+t_fold					*stock_arg(char *name);
+t_file					*stock_file(struct dirent *file, char *path);
+t_fold					*stock_fold(char *name, char *path);
+t_file					*stk_dir(t_dirent *file, char *path);
 void					ls_filter(t_fold **fold, t_set *set);
 void					free_files(t_file *files);
 void					free_fold(t_fold *fold);
 int						is_folder(char *name, t_stat *statb);
 int						is_symb_lnk(char *link, t_stat *statl);
+int						is_directory(struct dirent *file, t_file *fold, t_set set);
 t_set					init_set_max(t_set set, t_file *begin, int lid, int lg);
 void					*set_cmp(t_set set);
-t_fold					*ls_recu(t_fold *fold, t_set set);
+int						*ls_recu(t_file *fold, t_set set);
+t_file					*get_next_fold(t_file *fold, t_set set);
+t_file					*ls_conv(t_fold *fold);
 
 #endif

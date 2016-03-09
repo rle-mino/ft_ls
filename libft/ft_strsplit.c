@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 16:29:50 by rle-mino          #+#    #+#             */
-/*   Updated: 2015/12/04 15:53:00 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/09 23:46:05 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	j = 0;
 	i = nb_word(s, c);
-	tab = (char **)ft_memalloc(sizeof(char *) * i + 1);
+	tab = (char **)ft_memalloc(sizeof(char *) * (i + 1));
 	if (tab == NULL)
 		return (NULL);
 	while (i)
