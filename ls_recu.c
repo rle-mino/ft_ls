@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 20:15:00 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/10 19:25:13 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 17:26:24 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ t_file			*get_next_fold(t_file *fold, t_set set)
 
 	if (!(folder = opendir(fold->name)))
 		return (NULL);
-	while ((file = readdir(folder)) && !is_directory(file, fold, set));
+	while ((file = readdir(folder)) && !is_directory(file, fold, set))
+		;
 	if (file != NULL)
 		folds = stk_dir(file, fold->name);
 	else
@@ -67,6 +68,8 @@ int				*ls_recu(t_file *fold, t_set set)
 	ft_ls(fold->path, set);
 	if ((next = get_next_fold(fold, set)))
 		ls_recu(next, set);
-	ls_recu(fold->next, set);
+	next = fold->next;
+	free(fold);
+	ls_recu(next, set);
 	return (0);
 }

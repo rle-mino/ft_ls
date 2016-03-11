@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/09 17:30:44 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:24:48 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/acl.h>
 
 # define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
+
 #define MINORBITS       24
 #define MINORMASK       (0xffffff)
 
@@ -110,6 +111,7 @@ t_file					*stk_dir(t_dirent *file, char *path);
 void					ls_filter(t_fold **fold, t_set *set);
 void					free_files(t_file *files);
 void					free_fold(t_fold *fold);
+void					free_tab(char **tab);
 int						is_folder(char *name, t_stat *statb);
 int						is_symb_lnk(char *link, t_stat *statl);
 int						is_directory(struct dirent *file, t_file *fold, t_set set);

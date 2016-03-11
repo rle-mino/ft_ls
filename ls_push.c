@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:43:33 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/09 11:29:12 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 13:12:28 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void			ft_push(t_file *begin, t_file *link, int (*cmp)())
 	tmp->next = link;
 }
 
-void		ft_pushback_fold(t_fold **begin, t_fold *link)
+void			ft_pushback_fold(t_fold **begin, t_fold *link)
 {
 	link->next = *begin;
 	*begin = link;
 }
 
-void		ft_push_fold(t_fold *begin, t_fold *link)
+void			ft_push_fold(t_fold *begin, t_fold *link)
 {
 	t_fold	*tmp;
 

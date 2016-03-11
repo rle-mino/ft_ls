@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 11:24:02 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/10 00:24:35 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:33:52 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_file			*stock_file(t_dirent *file, char *path)
 	files->name = ft_strdup(file->d_name);
 	tmp = ft_strjoin(files->path, files->name);
 	files->next = NULL;
-	(void)lstat(tmp, &files->stat);
+	if (lstat(tmp, &files->stat))
+		ls_error(ERRNO, file->d_name);
 	if (S_ISLNK(files->stat.st_mode))
 	{
 		files->symb = ft_memalloc(1024);
@@ -35,7 +36,7 @@ t_file			*stock_file(t_dirent *file, char *path)
 	return (files);
 }
 
-t_fold		*stock_fold(char *name, char *path)
+t_fold			*stock_fold(char *name, char *path)
 {
 	t_fold	*fold;
 	char	*tmp;
@@ -54,7 +55,7 @@ t_fold		*stock_fold(char *name, char *path)
 	return (fold);
 }
 
-t_file		*stk_dir(t_dirent *file, char *path)
+t_file			*stk_dir(t_dirent *file, char *path)
 {
 	t_file	*fold;
 	char	*tmp;
@@ -70,7 +71,7 @@ t_file		*stk_dir(t_dirent *file, char *path)
 	return (fold);
 }
 
-t_fold		*stock_arg(char *name)
+t_fold			*stock_arg(char *name)
 {
 	t_fold		*fold;
 
@@ -81,7 +82,7 @@ t_fold		*stock_arg(char *name)
 	return (fold);
 }
 
-t_file		*stock_file_arg(char *name, struct stat statb)
+t_file			*stock_file_arg(char *name, struct stat statb)
 {
 	t_file		*file;
 	struct stat	statl;

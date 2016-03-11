@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:12:45 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/10 19:09:15 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 18:05:04 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,19 @@ int				ls_display(t_file *begin, t_set set)
 
 void			print_file(t_file *begin, t_set set)
 {
-	fpf("%s", get_right(begin));
-	fpf(" %*d", set.lnl,begin->stat.st_nlink);
-	fpf(" %-*s", set.lid, getpwuid(begin->stat.st_uid)->pw_name);
-	fpf("  %-*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
+	char	*tmp;
+
+	fpf("%s", (tmp = get_right(begin)));
+	free(tmp);
+	fpf(" %*d", set.lnl, begin->stat.st_nlink);
+	if (getpwuid(begin->stat.st_uid))
+		fpf(" %-*s", set.lid, getpwuid(begin->stat.st_uid)->pw_name);
+	else
+		fpf(" %-*s", set.lid, " ");
+	if (getgrgid(begin->stat.st_gid))
+		fpf("  %-*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
+	else
+		fpf("  %-*s", set.lg, " ");
 	if (S_ISCHR(begin->stat.st_mode))
 	{
 		fpf("  %2d,", MAJOR(begin->stat.st_rdev));
@@ -66,10 +75,12 @@ void			adjust_t(time_t ti)
 	int		ye;
 	char	**tab;
 	int		i;
+	char	*tmp;
 
 	ye = ti - time(NULL) < -15552000 ? 8 : 7;
 	ye = ti - time(NULL) > 3600 ? 8 : 7;
-	tab = ft_strsplit(ctime(&ti), ' ');
+	tmp = ctime(&ti);
+	tab = ft_strsplit(tmp, ' ');
 	fpf(" %s %2s", tab[1], tab[2]);
 	i = ft_strlen(tab[3]) - 1;
 	while (i)
@@ -83,4 +94,5 @@ void			adjust_t(time_t ti)
 	}
 	tab[4][ft_strlen(tab[4]) - 1] = '\0';
 	fpf(" %5s", ye == 7 ? tab[3] : tab[4]);
+	free_tab(tab);
 }

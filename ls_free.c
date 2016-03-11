@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/06 13:20:03 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/06 13:31:04 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:25:41 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,13 @@ void		free_fold(t_fold *fold)
 	if (fold->name)
 		free(fold->name);
 	free(fold);
+}
+
+void		free_tab(char **tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[++i])
+		free(tab[i]);
 }

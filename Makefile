@@ -6,7 +6,7 @@
 #    By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 16:45:33 by rle-mino          #+#    #+#              #
-#    Updated: 2016/03/09 22:55:51 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/03/11 12:21:02 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ KWHI	=		"\033[1;37m"
 
 
 #FLAGS
-FLAGS	= -g3 -Wall -Wextra -Werror
+FLAGS	= -g -Wall -Wextra -Werror
 
 #RULES
 

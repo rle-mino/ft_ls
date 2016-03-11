@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 11:05:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/09 18:58:50 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/11 13:04:49 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,22 @@ int			is_directory(struct dirent *file, t_file *fold, t_set set)
 	if (!lstat(tmp, &statbuff) && S_ISDIR(statbuff.st_mode))
 	{
 		if (!(set.flag & 8) && file->d_name[0] == '.')
+		{
+			free(tmp);
 			return (0);
+		}
 		if ((file->d_name[0] == '.') && ((file->d_name[1] == '\0') ||
 				(file->d_name[1] == '.' && file->d_name[2] == '\0')))
+		{
+			free(tmp);
 			return (0);
+		}
+		free(tmp);
 		return (1);
 	}
+	else if (stat(tmp, &statbuff))
+		ls_error(ERRNO, file->d_name);
+	free(tmp);
 	return (0);
 }
 
