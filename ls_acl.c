@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/12 20:50:38 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/12 22:25:23 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/12 23:36:08 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		ls_get_acl(t_file *link)
 	char	tmp3[101];
 
 	tmp = ft_strjoin(link->path, link->name);
-	if (listxattr(tmp, tmp3, sizeof(tmp3), XATTR_NOFOLLOW))
+	if (listxattr(tmp, tmp3, sizeof(tmp3), XATTR_NOFOLLOW) > 0)
 	{
 		free(tmp);
 		return ('@');
