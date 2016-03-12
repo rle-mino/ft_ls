@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/09 15:59:44 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/12 20:35:15 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int							ls_isflag(char c)
 {
-	if (c == 'l' || c == 'a' || c == 'r' || c == 'R' || c == 't')
+	if (c == 'l' || c == 'a' || c == 'r' || c == 'R' || c == 't'
+			|| c == 'G' || c == 'p')
 		return (1);
 	return (0);
 }
@@ -31,6 +32,10 @@ static void					ls_fill_set(t_set *set, char c)
 		set->flag = set->flag | 8;
 	else if (c == 't')
 		set->flag = set->flag | 16;
+	else if (c == 'G')
+		set->flag = set->flag | 32;
+	else if (c == 'p')
+		set->flag = set->flag | 64;
 }
 
 static int					ls_parsing_file(char **argv, int i, t_fold **fold,

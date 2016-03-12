@@ -6,11 +6,47 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:12:45 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/11 18:05:04 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/12 23:19:29 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void			display_colors(t_file *link, t_set set)
+{
+	if (set.flag & 32)
+	{
+		if (S_ISLNK(link->stat.st_mode))
+			fpf("%s%s%s", KMAG, link->name, RESET);
+		else if (S_ISDIR(link->stat.st_mode))
+			fpf("%s%s%s", KCYN, link->name, RESET);
+		else if (S_ISSOCK(link->stat.st_mode))
+			fpf("%s%s%s", KGRN, link->name, RESET);
+		else if (S_IXUSR & link->stat.st_mode && S_ISUID ^ link->stat.st_mode)
+			fpf("%s%s%s", KRED, link->name, RESET);
+		else
+			fpf("%s", link->name);
+	}
+	else
+		fpf("%s", link->name);
+	if (set.flag & 64 && S_ISDIR(link->stat.st_mode))
+		fpf("/");
+}
+
+void			display_one(t_file *begin, t_set set)
+{
+	while (begin)
+	{
+		if (*begin->name == '.' && !(set.flag & 8))
+			begin = begin->next;
+		else
+		{
+			display_colors(begin, set);
+			fpf("\n");
+			begin = begin->next;
+		}
+	}
+}
 
 int				ls_display(t_file *begin, t_set set)
 {
@@ -30,13 +66,7 @@ int				ls_display(t_file *begin, t_set set)
 		}
 	}
 	else
-		while (begin)
-		{
-			if (*begin->name == '.' && !(set.flag & 8))
-				begin = begin->next;
-			else if (fpf("%s\n", begin->name))
-				begin = begin->next;
-		}
+		display_one(begin, set);
 	return (1);
 }
 
@@ -63,7 +93,7 @@ void			print_file(t_file *begin, t_set set)
 	else
 		fpf(" %*d", set.lsi, begin->stat.st_size);
 	adjust_t(begin->stat.st_mtime);
-	fpf(" %s", begin->name);
+	display_colors(begin, set);
 	if (begin->symb)
 		fpf(" -> %s\n", begin->symb);
 	else
@@ -93,6 +123,6 @@ void			adjust_t(time_t ti)
 		i--;
 	}
 	tab[4][ft_strlen(tab[4]) - 1] = '\0';
-	fpf(" %5s", ye == 7 ? tab[3] : tab[4]);
+	fpf(" %5s ", ye == 7 ? tab[3] : tab[4]);
 	free_tab(tab);
 }

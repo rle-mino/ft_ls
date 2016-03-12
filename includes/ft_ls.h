@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/11 16:24:48 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/12 21:50:05 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,24 @@
 # include <errno.h>
 # include <stdio.h>
 # include <sys/acl.h>
+# include <sys/xattr.h>
 
 # define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
 
 #define MINORBITS       24
 #define MINORMASK       (0xffffff)
-
 #define MAJOR(dev)      ((unsigned int) ((dev) >> MINORBITS))
 #define MINOR(dev)      ((unsigned int) ((dev) & MINORMASK))
 #define MKDEV(ma,mi)    (((ma) << MINORBITS) | (mi))
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\033[0m"
 
 enum
 {
@@ -120,5 +129,6 @@ void					*set_cmp(t_set set);
 int						*ls_recu(t_file *fold, t_set set);
 t_file					*get_next_fold(t_file *fold, t_set set);
 t_file					*ls_conv(t_fold *fold);
+char					ls_get_acl(t_file *link);
 
 #endif

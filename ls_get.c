@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 15:42:40 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/08 17:09:03 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/12 20:50:21 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ char			*get_right(t_file *file)
 	right[7] = S_IROTH & mode ? 'r' : '-';
 	right[8] = S_IWOTH & mode ? 'w' : '-';
 	right[9] = get_r_oth(mode);
-	right[10] = ' ';
+	right[10] = ls_get_acl(file);
 	return (right);
 }
