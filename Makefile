@@ -6,7 +6,7 @@
 #    By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 16:45:33 by rle-mino          #+#    #+#              #
-#    Updated: 2016/03/14 13:36:55 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/03/14 22:43:07 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC		=	debug.c			\
 			ls_parsing.c	\
 			ls_display.c	\
 			ls_display2.c	\
+			ls_display3.c	\
 			ls_display_col.c\
 			ls_recu.c		\
 			ls_is.c			\
@@ -50,7 +51,7 @@ KWHI	=		"\033[1;37m"
 
 
 #FLAGS
-FLAGS	= -g -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 
 #RULES
 

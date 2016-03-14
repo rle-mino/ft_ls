@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 19:25:06 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/13 18:12:46 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 22:52:25 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,38 @@
 int							ls_isflag(char c)
 {
 	if (c == 'l' || c == 'a' || c == 'r' || c == 'R' || c == 't'
-			|| c == 'G' || c == 'p' || c == '1')
+			|| c == 'G' || c == 'p' || c == '1' || c == 'h' || c == 'g'
+			|| c == 'f' || c == 'o')
 		return (1);
 	return (0);
+}
+
+static void					more_set(t_set *set, char c)
+{
+	if (c == '1')
+	{
+		if (set->flag & 1)
+			set->flag = set->flag ^ 1;
+		set->flag = set->flag | 128;
+	}
+	else if (c == 'h')
+		set->flag = set->flag | 256;
+	else if (c == 'g' && (set->flag = set->flag | 512))
+		set->flag = set->flag | 1;
+	else if (c == 'f')
+	{
+		set->flag = set->flag | 1024;
+		set->flag = set->flag | 8;
+		if (set->flag & 4)
+			set->flag = set->flag ^ 4;
+		if (set->flag & 16)
+			set->flag = set->flag ^ 16;
+	}
+	else if (c == 'o')
+	{
+		set->flag = set->flag | 2048;
+		set->flag = set->flag | 1;
+	}
 }
 
 static void					ls_fill_set(t_set *set, char c)
@@ -40,12 +69,8 @@ static void					ls_fill_set(t_set *set, char c)
 		set->flag = set->flag | 32;
 	else if (c == 'p')
 		set->flag = set->flag | 64;
-	else if (c == '1')
-	{
-		if (set->flag & 1)
-			set->flag = set->flag ^ 1;
-		set->flag = set->flag | 128;
-	}
+	else
+		more_set(set, c);
 }
 
 static int					ls_parsing_file(char **argv, int i, t_fold **fold,

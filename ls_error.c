@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 17:08:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/02 14:50:11 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 22:35:48 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			ls_error(int error, char *str)
 		ft_putstr_fd("ft_ls: illegal option -- ", 2);
 		get_ill(str);
 		ft_putchar_fd('\n', 2);
-		ft_putstr_fd("Usage : ./ft_ls [-Ralrt] [file ...]\n", 2);
+		ft_putstr_fd("Usage : ./ft_ls [-1RGafghloprt] [file ...]\n", 2);
 		exit(0);
 	}
 	else if (error == MALL_ERR)

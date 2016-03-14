@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/14 13:58:26 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 22:53:32 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include <sys/acl.h>
 # include <sys/xattr.h>
 # include <sys/ioctl.h>
-
-# define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
 
 # define MINORBITS       24
 # define MINORMASK       (0xffffff)
@@ -74,7 +72,7 @@ typedef struct			s_ls_fold
 
 typedef struct			s_ls_set
 {
-	int					flag;
+	long				flag;
 	int					lid;
 	int					lg;
 	int					lsi;
@@ -86,8 +84,6 @@ typedef struct			s_ls_set
 	int					total;
 }						t_set;
 
-void					show_me(t_fold *fold);
-void					show_me_arg(t_set set);
 int						ft_ls(char *dir, t_set set);
 int						ls_error(int error, char *str);
 void					ft_pushback(t_file **begin, t_file *link);
@@ -111,6 +107,7 @@ long					cmp_rev_time(t_file *a, t_file *b);
 long					cmp_time(t_file *a, t_file *b);
 int						cmp_rev_name(t_file *a, t_file *b);
 int						cmp_name(t_file *s1, t_file *s2);
+int						no_cmp(t_file *s1, t_file *s2);
 char					*get_right(t_file *file);
 void					print_file(t_file *begin, t_set set);
 int						ft_nbrlen(long long nbr);
@@ -137,5 +134,6 @@ t_file					*get_next_fold(t_file *fold, t_set set);
 t_file					*ls_conv(t_fold *fold);
 char					ls_get_acl(t_file *link);
 void					display_col(t_file *link, t_set set);
+void					display_size(off_t size, t_set set);
 
 #endif

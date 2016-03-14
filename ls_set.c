@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:08:23 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/14 13:57:01 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 22:11:32 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void		*set_cmp(t_set set)
 		return (void*)cmp_time;
 	else if (set.flag & 4)
 		return (void*)cmp_rev_name;
+	else if (set.flag & 1024)
+		return (void*)no_cmp;
 	else
 		return (void*)cmp_name;
 }

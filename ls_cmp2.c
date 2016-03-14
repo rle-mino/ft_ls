@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/03 13:25:49 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/03 13:35:15 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 22:11:29 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,11 @@
 int			cmp_rev_name(t_file *a, t_file *b)
 {
 	return (-ft_strcmp(a->name, b->name));
+}
+
+int			no_cmp(t_file *a, t_file *b)
+{
+	(void)a;
+	(void)b;
+	return (1);
 }

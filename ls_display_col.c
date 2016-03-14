@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 18:16:02 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/14 18:23:24 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 22:51:45 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static void			display_col_colors_n(t_file *link, t_set set)
 	}
 	else
 		fpf("%s", link->name);
-	if (set.flag & 64 && S_ISDIR(link->stat.st_mode))
-		fpf("/");
 	fpf("\n");
 }
 
@@ -77,8 +75,6 @@ static void			display_col_colors(t_file *link, t_set set)
 	{
 		fpf("%-*s", a, link->name);
 	}
-	if (set.flag & 64 && S_ISDIR(link->stat.st_mode))
-		fpf("/");
 }
 
 static void			display_col2(t_file **link, t_set set, int bck)
@@ -112,7 +108,7 @@ void				display_col(t_file *link, t_set set)
 	get_lname(&set, link);
 	ioctl(0, TIOCGWINSZ, &w);
 	if (set.lname)
-		bck = w.ws_col / set.lname;
+		bck = (w.ws_col - 50) / set.lname;
 	else
 		return ;
 	while (link)

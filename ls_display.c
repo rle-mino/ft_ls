@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:12:45 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/14 18:23:26 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 21:37:21 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			print_file(t_file *begin, t_set set)
 		fpf(" %3d", MINOR(begin->stat.st_rdev));
 	}
 	else
-		fpf(" %*d", set.lsi, begin->stat.st_size);
+		display_size(begin->stat.st_size, set);
 	adjust_t(begin->stat.st_mtime);
 	display_colors(begin, set);
 	if (begin->symb)
