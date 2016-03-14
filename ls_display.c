@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 15:12:45 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/12 23:19:29 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:37:38 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int				ls_display(t_file *begin, t_set set)
 			}
 		}
 	}
-	else
+	else if (set.flag & 128)
 		display_one(begin, set);
+	else
+		display_col(begin, set);
 	return (1);
 }
 
@@ -77,14 +79,8 @@ void			print_file(t_file *begin, t_set set)
 	fpf("%s", (tmp = get_right(begin)));
 	free(tmp);
 	fpf(" %*d", set.lnl, begin->stat.st_nlink);
-	if (getpwuid(begin->stat.st_uid))
-		fpf(" %-*s", set.lid, getpwuid(begin->stat.st_uid)->pw_name);
-	else
-		fpf(" %-*s", set.lid, " ");
-	if (getgrgid(begin->stat.st_gid))
-		fpf("  %-*s", set.lg + 1, getgrgid(begin->stat.st_gid)->gr_name);
-	else
-		fpf("  %-*s", set.lg, " ");
+	print_pwuid(begin, set);
+	print_group(begin, set);
 	if (S_ISCHR(begin->stat.st_mode))
 	{
 		fpf("  %2d,", MAJOR(begin->stat.st_rdev));

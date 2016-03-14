@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 18:27:41 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/12 23:17:01 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:57:45 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ long			cmp_rev_time(t_file *a, t_file *b)
 	{
 		if (a->stat.st_mtimespec.tv_nsec == b->stat.st_mtimespec.tv_nsec)
 			return (cmp_name(b, a));
-		return  (a->stat.st_mtimespec.tv_nsec - b->stat.st_mtimespec.tv_nsec);
+		return (a->stat.st_mtimespec.tv_nsec - b->stat.st_mtimespec.tv_nsec);
 	}
 	return (a_a - b_b);
 }

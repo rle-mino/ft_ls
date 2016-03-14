@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:11:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/09 10:36:00 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:49:33 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			ft_ls(char *dir, t_set set)
 		files = stock_file(file, dir);
 	while ((file = readdir(folder)))
 		ls_cmp(&files, stock_file(file, dir), cmp);
-	set = init_set_max(set, files, 0, 0);
+	set = init_set_max(set, files);
 	ls_display(files, set);
 	free_files(files);
 	closedir(folder);

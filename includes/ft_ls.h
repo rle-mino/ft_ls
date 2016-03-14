@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 14:05:58 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/12 21:50:05 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 13:58:26 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,24 @@
 # include <stdio.h>
 # include <sys/acl.h>
 # include <sys/xattr.h>
+# include <sys/ioctl.h>
 
 # define DEBUG fpf("%d - %s - %s\n", __LINE__, __func__, __FILE__);
 
-#define MINORBITS       24
-#define MINORMASK       (0xffffff)
-#define MAJOR(dev)      ((unsigned int) ((dev) >> MINORBITS))
-#define MINOR(dev)      ((unsigned int) ((dev) & MINORMASK))
-#define MKDEV(ma,mi)    (((ma) << MINORBITS) | (mi))
-#define KNRM  "\x1B[0m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
-#define RESET "\033[0m"
+# define MINORBITS       24
+# define MINORMASK       (0xffffff)
+# define MAJOR(dev)      ((unsigned int) ((dev) >> MINORBITS))
+# define MINOR(dev)      ((unsigned int) ((dev) & MINORMASK))
+# define MKDEV(ma,mi)    (((ma) << MINORBITS) | (mi))
+# define KNRM  "\x1B[0m"
+# define KRED  "\x1B[31m"
+# define KGRN  "\x1B[32m"
+# define KYEL  "\x1B[33m"
+# define KBLU  "\x1B[34m"
+# define KMAG  "\x1B[35m"
+# define KCYN  "\x1B[36m"
+# define KWHT  "\x1B[37m"
+# define RESET "\033[0m"
 
 enum
 {
@@ -78,6 +79,8 @@ typedef struct			s_ls_set
 	int					lg;
 	int					lsi;
 	int					lda;
+	int					lname;
+	int					nbfile;
 	int					file;
 	int					lnl;
 	int					total;
@@ -94,6 +97,8 @@ void					ft_push_fold(t_fold *begin, t_fold *link);
 long					cmp_fold_time(struct stat a, struct stat b);
 long					cmp_fold_name(t_fold *a, t_fold *b);
 int						ls_display(t_file *begin, t_set set);
+void					print_pwuid(t_file *begin, t_set set);
+void					print_group(t_file *begin, t_set set);
 t_set					ls_parsing(char **arg, int count, t_fold **fold);
 int						ls_isflag(char c);
 void					ls_init(t_fold **fold);
@@ -123,12 +128,14 @@ void					free_fold(t_fold *fold);
 void					free_tab(char **tab);
 int						is_folder(char *name, t_stat *statb);
 int						is_symb_lnk(char *link, t_stat *statl);
-int						is_directory(struct dirent *file, t_file *fold, t_set set);
-t_set					init_set_max(t_set set, t_file *begin, int lid, int lg);
+int						is_directory(struct dirent *file, t_file *fold,
+																t_set set);
+t_set					init_set_max(t_set set, t_file *begin);
 void					*set_cmp(t_set set);
 int						*ls_recu(t_file *fold, t_set set);
 t_file					*get_next_fold(t_file *fold, t_set set);
 t_file					*ls_conv(t_fold *fold);
 char					ls_get_acl(t_file *link);
+void					display_col(t_file *link, t_set set);
 
 #endif
