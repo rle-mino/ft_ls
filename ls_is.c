@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 11:05:42 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/11 13:04:49 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:36:28 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			is_directory(struct dirent *file, t_file *fold, t_set set)
 		free(tmp);
 		return (1);
 	}
-	else if (stat(tmp, &statbuff))
+	else if (lstat(tmp, &statbuff))
 		ls_error(ERRNO, file->d_name);
 	free(tmp);
 	return (0);

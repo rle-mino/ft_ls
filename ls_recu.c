@@ -6,7 +6,7 @@
 /*   By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 20:15:00 by rle-mino          #+#    #+#             */
-/*   Updated: 2016/03/11 17:26:24 by rle-mino         ###   ########.fr       */
+/*   Updated: 2016/03/14 18:44:21 by rle-mino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ t_file			*get_next_fold(t_file *fold, t_set set)
 		closedir(folder);
 		return (NULL);
 	}
-	while ((file = readdir(folder)) != NULL && ft_strcmp(".", file->d_name) &&
-				ft_strcmp("..", file->d_name))
+	while ((file = readdir(folder)))
 	{
 		if (is_directory(file, fold, set))
 			ls_cmp(&folds, stk_dir(file, fold->name), set_cmp(set));
