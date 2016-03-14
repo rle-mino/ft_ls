@@ -6,7 +6,7 @@
 #    By: rle-mino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/25 16:45:33 by rle-mino          #+#    #+#              #
-#    Updated: 2016/03/14 22:43:07 by rle-mino         ###   ########.fr        #
+#    Updated: 2016/03/14 22:56:50 by rle-mino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,7 @@
 NAME	=	ft_ls
 
 #SOURCE
-SRC		=	debug.c			\
-			ft_ls.c			\
+SRC		=	ft_ls.c			\
 			ls_error.c		\
 			ls_tools.c		\
 			ls_cmp.c		\
